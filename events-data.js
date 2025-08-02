@@ -47,7 +47,7 @@ const eventsData = [
             "with:<item> - to only process the event when the item used for interaction matches a specified item."
         ],
         "contexts": [
-            "<context.player> returns the PlayerTag of the player.",
+            "<player> returns the PlayerTag of the player.",
             "<context.location> returns the LocationTag of the interacted block.",
             "<context.namespaced> returns the ElementTag of the ItemsAdder namespaced ID.",
             "<context.id> returns the ElementTag of the ItemsAdder item ID.",
