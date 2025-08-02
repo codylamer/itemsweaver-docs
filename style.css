@@ -116,7 +116,7 @@ main {
 }
 
 .event-card table td ul li::before {
-    content: 'ф';
+    content: '•';
     color: #3498db;
     font-weight: bold;
     display: inline-block;
