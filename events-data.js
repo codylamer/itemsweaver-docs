@@ -12,10 +12,10 @@ const eventsData = [
         "switches": [
             "namespaced:<namespaced> - to match a specific ItemsAdder namespaced ID (e.g., 'my_pack:').",
             "id:<id> - to match a specific ItemsAdder item ID (e.g., 'my_block').",
-            "wth:<item> - to only process the event when the item in the player's hand matches a specified item."
+            "with:<item> - to only process the event when the item in the player's hand matches a specified item."
         ],
         "contexts": [
-            "<context.player> returns the PlayerTag of the player.",
+            "<player> returns the PlayerTag of the player.",
             "<context.item_in_hand> returns the ItemTag of the item in hand.",
             "<context.namespaced> returns the ElementTag of the ItemsAdder namespaced ID.",
             "<context.id> returns the ElementTag of the ItemsAdder item ID.",
@@ -41,7 +41,7 @@ const eventsData = [
         "switches": [
             "namespaced:<namespaced> - to match a specific ItemsAdder namespaced ID.",
             "id:<id> - to match a specific ItemsAdder item ID.",
-            "using:<hand> - to only process the event when the player used a specific hand (e.g., 'main_hand', 'off_hand').",
+            "using:<hand> - to only process the event when the player used a specific hand (e.g., 'main', 'off_hand').",
             "action:<action> - to match a specific interaction action (e.g., 'right_click', 'left_click').",
             "face:<face> - to match the block face that was clicked (e.g., 'top', 'bottom').",
             "with:<item> - to only process the event when the item used for interaction matches a specified item."
@@ -79,7 +79,7 @@ const eventsData = [
             "against:<material> - to only process the event when the block was placed against a specific material."
         ],
         "contexts": [
-            "<context.player> returns the PlayerTag of the player.",
+            "<player> returns the PlayerTag of the player.",
             "<context.location> returns the LocationTag where the block was placed.",
             "<context.namespaced> returns the ElementTag of the ItemsAdder namespaced ID.",
             "<context.id> returns the ElementTag of the ItemsAdder item ID.",
@@ -135,21 +135,20 @@ const eventsData = [
     {
         "name": "Player Emote End",
         "event_lines": [
-            "ia player finish <'emote'> (because <'cause'>)"
+            "ia player finish <emote> (because <cause>)"
         ],
         "triggers": "when a player finishes an ItemsAdder emote.",
         "generated_examples": [
             "on ia player finish emote:",
             "on ia player finish some_emote_id:",
-            "on ia player finish emote because cancelled:"
+            "on ia player finish emote because stop:",
+            "on ia player finish some_emote_id because finished:"
         ],
-        "switches": [
-            "emote_id:<id> - only runs when a specific emote ends (deprecated, use event line directly)."
-        ],
+        "switches": [],
         "contexts": [
-            "<context.player> returns the PlayerTag of the player.",
+            "<player> returns the PlayerTag of the player.",
             "<context.emote> returns the ElementTag of the emote's ID.",
-            "<context.cause> returns the ElementTag describing why the emote ended (e.g., 'finished', 'cancelled')."
+            "<context.cause> returns the ElementTag describing why the emote ended ('FIRST_LOAD' or 'RELOAD')."
         ],
         "cancellable": false,
         "has_location": false,
@@ -159,22 +158,20 @@ const eventsData = [
     {
         "name": "Player Emote Play",
         "event_lines": [
-            "ia player play <'emote'>"
+            "ia player play <emote>"
         ],
         "triggers": "when a player starts playing an ItemsAdder emote.",
         "generated_examples": [
             "on ia player play emote:",
             "on ia player play some_emote_id:"
         ],
-        "switches": [
-            "emote_id:<id> - only runs when a specific emote starts (deprecated, use event line directly)."
-        ],
+        "switches": [],
         "contexts": [
-            "<context.player> returns the PlayerTag of the player.",
+            "<player> returns the PlayerTag of the player.",
             "<context.emote> returns the ElementTag of the emote's ID."
         ],
-        "cancellable": false,
-        "has_location": true,
+        "cancellable": true,
+        "has_location": false,
         "group": "Player",
         "source": "https://github.com/codylamer/ItemsWeaver/blob/main/src/main/java/com/codylamer/itemsweaver/events/PlayerEmotePlayScriptEvent.java"
     },
@@ -190,7 +187,7 @@ const eventsData = [
         ],
         "switches": [],
         "contexts": [
-            "<context.player> returns the PlayerTag of the player.",
+            "<player> returns the PlayerTag of the player.",
             "<context.url> returns the ElementTag of the resource pack URL.",
             "<context.hash> returns the ElementTag of the resource pack hash.",
             "<context.is_ia_resourcepack> returns whether the sent pack is an ItemsAdder resource pack (ElementTag of boolean)."
